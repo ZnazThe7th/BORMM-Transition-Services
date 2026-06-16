@@ -1,84 +1,29 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'motion/react';
-import { Lightbulb, Rocket, FileText, PenTool, Compass, TrendingUp, Check, Clock, Video, AlertCircle } from 'lucide-react';
+import {motion} from 'motion/react';
+import {AlertCircle} from 'lucide-react';
 
-const services = [
-  {
-    id: 1,
-    title: 'Quick Clarity Call',
-    price: '$15',
-    duration: '30 Minutes | Phone or Zoom',
-    icon: Lightbulb,
-    description: 'Need a fresh perspective or help thinking through your next step? This focused session provides quick guidance on career transitions, housing concerns, budgeting questions, job search strategies, or personal challenges.',
-    outcome: 'You\'ll leave with practical suggestions, resources, and a clearer path forward.',
-    listTitle: 'Best For:',
-    list: ['Quick questions', 'Career advice', 'Housing concerns', 'Budgeting questions', 'General life transitions'],
-  },
-  {
-    id: 2,
-    title: 'Layoff to Launch Strategy',
-    price: '$25',
-    duration: '45 Minutes | Phone or Zoom',
-    icon: Rocket,
-    popular: true,
-    description: 'Life changes can feel overwhelming, but they can also create new opportunities. This personalized session is designed for individuals navigating layoffs, career changes, underemployment, or major life transitions.',
-    outcome: 'Together, we\'ll assess your current situation, identify immediate priorities, and create an actionable plan to help you regain momentum.',
-    listTitle: 'You\'ll Receive:',
-    list: ['Situation assessment', 'Personalized action plan', 'Resource recommendations', 'Follow-up session summary'],
-  },
-  {
-    id: 3,
-    title: 'Resume Refresh',
-    price: '$25',
-    duration: '45 Minutes | Phone or Zoom',
-    icon: FileText,
-    description: 'Your resume is often your first impression. This session provides personalized feedback and recommendations to strengthen your resume and improve your job search strategy.',
-    outcome: 'We\'ll discuss formatting, accomplishments, keywords, and ways to better position your experience for today\'s job market.',
-    listTitle: 'Includes:',
-    list: ['Resume review', 'Improvement recommendations', 'LinkedIn profile suggestions', 'Job search guidance'],
-  },
-  {
-    id: 4,
-    title: 'Letter & Correspondence Support',
-    price: '$25',
-    duration: '45 Minutes | Phone or Zoom',
-    icon: PenTool,
-    description: 'Sometimes the right words make all the difference. Receive guidance on drafting professional correspondence related to employment matters, housing concerns, disputes, hardship requests, or appeals.',
-    outcome: 'We\'ll help you organize your thoughts and create a clear, professional message.',
-    listTitle: 'Common Requests:',
-    list: ['Professional letters', 'Appeal letters', 'Hardship requests', 'Housing correspondence', 'Follow-up communications'],
-    disclaimer: 'This service provides guidance and drafting support only and does not constitute legal advice.',
-  },
-  {
-    id: 5,
-    title: 'BORMM Transition Blueprint',
-    price: '$50',
-    duration: '60 Minutes | Phone or Zoom',
-    icon: Compass,
-    description: 'A comprehensive strategy session for individuals ready to take control of their next chapter. This session is ideal for those experiencing major life changes and looking for a clear roadmap forward.',
-    outcome: 'Together, we\'ll review your career goals, housing situation, financial organization, and personal priorities to create a customized 30-day action plan.',
-    listTitle: 'Includes:',
-    list: ['Career review', 'Housing review', 'Financial organization discussion', 'Goal-setting session', 'Customized 30-day action plan'],
-  },
-  {
-    id: 6,
-    title: 'BORMM Momentum Monthly',
-    price: '$99',
-    duration: 'Monthly Coaching Support',
-    icon: TrendingUp,
-    description: 'Change doesn\'t happen in a single conversation—it happens through consistent action. The Momentum Package provides ongoing support, accountability, and guidance as you work toward your goals.',
-    outcome: 'Whether you\'re rebuilding after a setback, pursuing a career transition, or creating a new plan, this package helps keep you moving forward.',
-    listTitle: 'Includes:',
-    list: ['Two 45-minute coaching sessions / month', 'Priority scheduling', 'Email support between sessions', 'Monthly accountability check-in', 'Resource recommendations'],
-  },
-];
+import {services, type Service} from '@/lib/services';
+import {serviceIcons} from '@/components/service-icons';
+import {BookingModal} from '@/components/booking-modal';
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [selectedService, setSelectedService] = React.useState<Service | null>(
+    null,
+  );
+
+  const openBooking = (service: Service | null) => {
+    setSelectedService(service);
+    setModalOpen(true);
+  };
+
+  const closeBooking = () => setModalOpen(false);
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#F7F5F2] text-[#2D2D2D] selection:bg-[#F0EEF7] selection:text-[#6B5A9E] overflow-hidden">
-      
+
       {/* Vertical Editorial Rail (Desktop) */}
       <div className="hidden md:flex w-24 h-screen border-r border-[#D1CEC7] flex-col items-center justify-between py-12 bg-white shrink-0 sticky top-0">
         <div className="[writing-mode:vertical-rl] rotate-180 text-sm tracking-[0.4em] font-bold text-[#6B5A9E] uppercase">BORMM Transition</div>
@@ -98,21 +43,22 @@ export default function Home() {
             </div>
             <span className="font-bold text-sm tracking-widest text-[#6B5A9E] uppercase">BORMM</span>
           </div>
-          <a
-            href="mailto:contact@example.com"
+          <button
+            type="button"
+            onClick={() => openBooking(null)}
             className="text-xs uppercase tracking-widest font-bold text-[#A19D94] hover:text-[#2D2D2D] transition-colors"
           >
-            Contact
-          </a>
+            Sign Up
+          </button>
         </header>
 
         {/* Top Header Section (Desktop format) */}
         <header className="pt-8 md:pt-12 px-6 lg:px-12 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="max-w-xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{opacity: 0, y: 20}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.5}}
             >
               <h1 className="text-5xl lg:text-6xl font-serif leading-tight italic text-[#1A1A1A]">
                 Disruption to Direction
@@ -120,6 +66,13 @@ export default function Home() {
               <p className="mt-4 text-lg text-[#666] font-light max-w-md">
                 Helping you navigate life&apos;s major shifts with clarity, strategy, and momentum. Focus on practical life strategies.
               </p>
+              <button
+                type="button"
+                onClick={() => openBooking(null)}
+                className="mt-6 inline-flex items-center px-6 py-3 text-xs uppercase tracking-widest font-bold bg-[#6B5A9E] text-white hover:bg-[#5A4B85] transition-colors"
+              >
+                Sign Up For A Session
+              </button>
             </motion.div>
           </div>
           <div className="hidden md:block text-right">
@@ -136,20 +89,21 @@ export default function Home() {
             const isDark = service.id === 6;
             const isAlt = service.id === 4;
             const isPopular = service.popular;
-            
+            const Icon = serviceIcons[service.icon];
+
             return (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{opacity: 0, y: 20}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.5, delay: index * 0.1}}
               className={`group flex flex-col transition-colors duration-300 relative ${
-                isDark 
-                  ? 'bg-[#2D2D2D] text-white border border-[#2D2D2D]' 
-                : isAlt 
+                isDark
+                  ? 'bg-[#2D2D2D] text-white border border-[#2D2D2D]'
+                : isAlt
                   ? 'bg-[#FDFCFB] border border-[#E5E2DA] hover:border-[#6B5A9E]'
-                : isPopular 
-                  ? 'bg-white border-2 border-[#6B5A9E]' 
+                : isPopular
+                  ? 'bg-white border-2 border-[#6B5A9E]'
                   : 'bg-white border border-[#E5E2DA] hover:border-[#6B5A9E]'
               }`}
             >
@@ -163,7 +117,7 @@ export default function Home() {
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="flex items-start justify-between mb-4">
                   <div className={`p-2 inline-flex ${isDark ? 'text-[#CCC]' : 'text-[#6B5A9E]'}`}>
-                    <service.icon className="w-6 h-6" strokeWidth={1.5} />
+                    <Icon className="w-6 h-6" strokeWidth={1.5} />
                   </div>
                   <div className="flex flex-col items-end gap-1">
                     <span className={`text-[10px] px-2 py-1 uppercase tracking-tighter font-bold ${isDark ? 'bg-[#444] text-white' : 'bg-[#F0EEF7] text-[#2D2D2D]'}`}>
@@ -203,14 +157,18 @@ export default function Home() {
                   </div>
                 )}
 
-                <button className={`mt-8 w-full py-3 text-xs uppercase tracking-widest font-bold transition-colors ${
+                <button
+                  type="button"
+                  onClick={() => openBooking(service)}
+                  aria-label={`${service.cta}: ${service.title}`}
+                  className={`mt-8 w-full py-3 text-xs uppercase tracking-widest font-bold transition-colors ${
                   isDark
                     ? 'bg-[#6B5A9E] text-white hover:bg-[#5A4B85]'
                     : isPopular
                       ? 'bg-black text-white hover:bg-[#333]'
                       : 'border border-black text-black hover:bg-black hover:text-white'
                 }`}>
-                  {isDark ? 'Join Monthly' : isPopular ? 'Select Session' : 'Book Now'}
+                  {service.cta}
                 </button>
               </div>
             </motion.div>
@@ -225,11 +183,23 @@ export default function Home() {
         </p>
         <div className="flex space-x-6 text-[#1A1A1A]">
           <a href="mailto:support@bormm.com" className="text-[10px] font-bold uppercase tracking-wider hover:text-[#6B5A9E]">Support@bormm.com</a>
-          <button className="text-[10px] font-bold uppercase tracking-wider hover:text-[#6B5A9E]">Schedule Appointment</button>
+          <button
+            type="button"
+            onClick={() => openBooking(null)}
+            className="text-[10px] font-bold uppercase tracking-wider hover:text-[#6B5A9E]"
+          >
+            Schedule Appointment
+          </button>
         </div>
       </footer>
 
       </div>
+
+      <BookingModal
+        open={modalOpen}
+        service={selectedService}
+        onClose={closeBooking}
+      />
     </div>
   );
 }
