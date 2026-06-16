@@ -1,0 +1,6 @@
+{
+  "name": "BORMM Transition Services",
+  "description": "Helping People Move From Disruption to Direction",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
