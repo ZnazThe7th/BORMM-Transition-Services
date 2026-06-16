@@ -19,7 +19,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  output: 'standalone',
+  // On Vercel, the platform manages the build output and serverless packaging,
+  // so 'standalone' is unnecessary and can confuse framework detection. Keep it
+  // for other targets (e.g. AI Studio / Cloud Run, Docker self-hosting).
+  output: process.env.VERCEL ? undefined : 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
