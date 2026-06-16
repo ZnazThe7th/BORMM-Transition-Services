@@ -5,3 +5,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Runtime data store for bookings (created by the Node.js back-end)
+/data/
