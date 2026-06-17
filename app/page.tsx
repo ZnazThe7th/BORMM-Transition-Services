@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Lightbulb, Rocket, FileText, PenTool, Compass, TrendingUp, Check, Clock, Video, AlertCircle, X, Zap, Briefcase, RefreshCw, Mail, Map, CalendarHeart, CircleDollarSign } from 'lucide-react';
+import { Lightbulb, Rocket, FileText, PenTool, Compass, TrendingUp, Check, Clock, Video, AlertCircle, X, Zap, Briefcase, RefreshCw, Mail, Map, CalendarHeart, CircleDollarSign, Heart } from 'lucide-react';
 import { initAuth, googleSignIn, getAccessToken, logout } from '../lib/firebase';
 import { addClientToSheet, createCalendarEvent, sendNotificationEmail, addTasks, addContact } from '../lib/workspace';
 import { BormmLogo } from '../components/BormmLogo';
@@ -178,14 +178,9 @@ export default function Home() {
         {/* Mobile Header */}
         <header className="md:hidden border-b border-[#E5E2DA] bg-white px-6 py-4 flex items-center justify-between sticky top-0 z-30">
           <BormmLogo className="scale-[0.5] origin-left -my-4" />
-          <div className="flex items-center gap-4">
-             <Link href="/admin" className="text-[9px] uppercase tracking-widest font-bold text-[#FF1493]">
-               Admin
-             </Link>
-             <div className="w-10 h-10 rounded-full border-2 border-[#FF1493] overflow-hidden shadow-sm bg-white shrink-0">
-               <img src="/Mascot.jpeg" alt="Mascot" className="w-full h-full object-cover" />
-             </div>
-          </div>
+          <Link href="/admin" className="text-[9px] uppercase tracking-widest font-bold text-[#E6007E]">
+            Admin
+          </Link>
         </header>
 
         {/* Top Header Section (Desktop format) */}
@@ -235,14 +230,15 @@ export default function Home() {
                initial={{ opacity: 0, scale: 0.95 }}
                animate={{ opacity: 1, scale: 1 }}
                transition={{ duration: 0.8, delay: 0.2 }}
-               className="hidden md:flex flex-1 justify-center xl:justify-end items-center"
+               className="flex w-full flex-1 justify-center xl:justify-end items-center"
             >
                <div className="relative shrink-0">
-                 <div className="w-60 h-60 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden ring-[6px] ring-[#5BA89E]/70 shadow-2xl bg-white">
+                 <div className="w-60 h-60 sm:w-72 sm:h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden ring-[6px] ring-[#5BA89E]/70 shadow-2xl bg-white">
                    <img src="/Mascot.jpeg" alt="BORMM Mascot" className="w-full h-full object-cover" />
                  </div>
-                 <div className="absolute -bottom-1 left-0 w-24 h-24 lg:w-28 lg:h-28 rounded-full bg-gradient-to-br from-[#E0BC57] to-[#B8923A] flex items-center justify-center text-center shadow-xl border-4 border-[#FDFBF9]">
-                   <span className="text-[8px] lg:text-[9px] font-bold uppercase leading-tight tracking-wide text-white px-2">
+                 <div className="absolute -bottom-1 left-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#E0BC57] to-[#B8923A] flex flex-col items-center justify-center text-center shadow-xl border-4 border-[#FDFBF9]">
+                   <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white fill-white mb-0.5" />
+                   <span className="text-[8px] sm:text-[9px] font-bold uppercase leading-tight tracking-wide text-white px-2">
                      Building Stability, Stewardship, &amp; Hope
                    </span>
                  </div>
@@ -260,7 +256,7 @@ export default function Home() {
             className="w-full mt-4"
           >
             <div className="flex items-center justify-center mb-10">
-              <span className="bg-gradient-to-r from-[#E0BC57] to-[#C29A38] text-white text-[11px] font-bold uppercase tracking-[0.2em] px-6 py-2.5 rounded-full shadow-md">
+              <span className="w-full max-w-md md:w-auto text-center bg-gradient-to-r from-[#E0BC57] to-[#C29A38] text-white text-[11px] md:text-xs font-bold uppercase tracking-[0.2em] px-6 py-3 rounded-full shadow-md">
                 Transition Services Include:
               </span>
             </div>
