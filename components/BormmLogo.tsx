@@ -8,7 +8,7 @@ export const BormmLogo = ({ className = "" }: { className?: string }) => {
       */}
       <div className="w-48 h-24 md:w-64 md:h-32 relative">
         <img 
-          src="/logo.jpeg" 
+          src="/BORMM%20Logo.jpeg" 
           alt="BORMM Logo" 
           className="w-full h-full object-contain"
         />
