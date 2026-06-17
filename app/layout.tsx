@@ -1,26 +1,19 @@
-import type {Metadata} from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
-import './globals.css'; // Global styles
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-serif', // Replaces --font-heading with serif font
-});
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'BORMM Transition Services',
-  description: 'Helping People Move From Disruption to Direction',
+  title: 'BORMM | Back Out Roommate',
+  description: 'Find Housing. Find Help. Find Hope.',
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased bg-[#F7F5F2] text-[#2D2D2D]" suppressHydrationWarning>
+    <html lang="en">
+      <body className="antialiased min-h-screen">
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 {
-  "name": "BORMM Transition Services",
-  "description": "Helping People Move From Disruption to Direction",
+  "name": "BORMM Support Platform",
+  "description": "Personalized guidance platform integrating Google Workspace for bookings and transitions.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
